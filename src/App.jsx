@@ -6,6 +6,7 @@ import BooksListPage from './pages/BooksListPage'
 import AddBook from './pages/AddBook'
 import Navbar from './components/Navbar'
 import ErrorPage from './pages/ErrorPage'
+import UpdateBook from './pages/UpdateBook'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/books" element={<BooksListPage />} />
         <Route path="/books/:bookId" element={<BookDetailsPage />} />
         <Route path="/new-book" element={<AddBook />} />
+        <Route path="/edit-book" element={<UpdateBook />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
 
