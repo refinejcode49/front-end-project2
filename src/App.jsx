@@ -7,6 +7,7 @@ import AddBook from './pages/AddBook'
 import Navbar from './components/Navbar'
 import ErrorPage from './pages/ErrorPage'
 import UpdateBook from './pages/UpdateBook'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/edit-book" element={<UpdateBook />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
+      <Footer />
 
     </div>
     </>
