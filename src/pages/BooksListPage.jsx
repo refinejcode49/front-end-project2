@@ -10,7 +10,7 @@ const BooksListPage = () => {
         const response = await axios.get("http://localhost:5005/books");
         console.log("response: ", response);
         // in the google json file the data is stored inside items
-        setAllBooks(response.data.items);
+        setAllBooks(response.data);
       } catch (error) {
         console.log(error);
       }
