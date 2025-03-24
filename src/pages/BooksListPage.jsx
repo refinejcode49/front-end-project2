@@ -10,11 +10,7 @@ const BooksListPage = () => {
         const response = await axios.get("http://localhost:5005/books");
         console.log("response: ", response);
         // in the google json file the data is stored inside items
-<<<<<<< HEAD
         setAllBooks(response.data);
-=======
-        setAllBooks(response.data)
->>>>>>> jennifer
       } catch (error) {
         console.log(error);
       }
@@ -25,7 +21,6 @@ const BooksListPage = () => {
 
 
   return (
-<<<<<<< HEAD
     <div className="all-books">
     {allBooks.map((oneBook) => {
       return (
@@ -46,25 +41,3 @@ const BooksListPage = () => {
 };
 
 export default BooksListPage;
-=======
-      <div className="all-books">
-        {allBooks.map((oneBook) => {
-          return (
-            <div key={oneBook.id} className="book-card">
-              <article>
-                <Link to={`/books/${oneBook.id}`}>
-                  console.log("bookId is :", {oneBook.id})
-                  <img src={oneBook.volumeInfo.imageLinks.smallThumbnail} alt={oneBook.volumeInfo.description} />
-                </Link>
-                <h2>{oneBook.volumeInfo.title}</h2>
-                <p>{oneBook.volumeInfo.authors}</p>
-              </article>
-            </div>
-          );
-        })}
-      </div>
-  );
-};
-
-export default BooksListPage;
->>>>>>> jennifer
