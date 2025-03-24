@@ -8,7 +8,7 @@ const BooksListPage = () => {
   useEffect(() => {
     async function getAllBooks() {
       try {
-        const response = await axios.get("http://localhost:5005/books/");
+        const response = await axios.get("http://localhost:5005/books");
         console.log("response: ", response);
         // in the google json file the data is stored inside items
         setAllBooks(response.data.items)
