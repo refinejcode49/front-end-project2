@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 
@@ -31,7 +32,7 @@ const BookDetailsPage = () => {
       })
 
      /*axios
-      get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+      .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
       .then(({data}) => {
         console.log("response from axios: ", data);
         setBook(data.items)
@@ -46,9 +47,9 @@ const BookDetailsPage = () => {
   return (
     <div>
       <article>
-          {/*<img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.description} />
-          <h2>{book.volumeInfo.title}</h2>
-          <p>{book.volumeInfo.authors}</p>*/}
+          <img src={book.thumbnail} alt={book.description} />
+          <h2>{book.title}</h2>
+          <p>{book.authors}</p>
       
       <Link to="/">
         <button>BACK</button>
