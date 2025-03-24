@@ -23,21 +23,22 @@ const BooksListPage = () => {
 
 
   return (
-      <div className="all-books">
-        {allBooks.map((oneBook) => {
-          return (
-            <div key={oneBook.id} className="book-card">
-              <article>
-                <Link to={"/books/:bookId"}>
-                  <img src={oneBook.volumeInfo.imageLinks.smallThumbnail} alt={oneBook.volumeInfo.description} />
-                </Link>
-                <h2>{oneBook.volumeInfo.title}</h2>
-                <p>{oneBook.volumeInfo.authors}</p>
-              </article>
-            </div>
-          );
-        })}
-      </div>
+    <div className="all-books">
+    {allBooks.map((oneBook) => {
+      return (
+        <div key={oneBook.id} className="book-card">
+          <article>
+            <Link to={`/books/${oneBook.id}`}>
+              console.log("bookId is :", {oneBook.id})
+              <img src={oneBook.volumeInfo.imageLinks.smallThumbnail} alt={oneBook.volumeInfo.description} />
+            </Link>
+            <h2>{oneBook.volumeInfo.title}</h2>
+            <p>{oneBook.volumeInfo.authors}</p>
+          </article>
+        </div>
+      );
+    })}
+  </div>
   );
 };
 
