@@ -1,70 +1,65 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { data, Link } from 'react-router-dom';
 
-const BookListPage = () => {
-  const [books, setBooks] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const BooksListPage = () => {
 
-  const fetchBooks = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`
-      );
-      setBooks(response.data?.items || []);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const [allBooks, setAllBooks] = useState([]);
   useEffect(() => {
-    if (searchQuery) {
-      fetchBooks();
+    async function getAllBooks() {
+      try {
+        const response = await axios.get("https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&maxResults=40");
+        console.log("response: ", response);
+        // in the google json file the data is stored inside items
+        setAllBooks(response.data.items)
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [searchQuery]);
+    //to work you have to call getAllbooks() !!!!!!!!!!!
+    getAllBooks();
 
-  const clearSearch = () => {
-    setSearchQuery("");
-  };
+    /*fetch("https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&maxResults=40")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        setAllBooks(response.data.items)
+      })
+      .catch((error)=>{
+        console.log("the error is :", error);
+      })*/
+     /*axios("https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&maxResults=40")
+     .then(({data}) => {
+      console.log("response from axios: ", data);
+      setAllBooks(data.items)
+     })
+     .catch((err) => {
+      console.log(err);
+     });*/
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  }, []);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+
+
 
   return (
-    <div>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      <button onClick={clearSearch}>Clear</button>
-      {books.length === 0 && searchQuery !== "" && <div>No books found.</div>}
-      <ul>
-        {books.map((book) => (
-          <li key={book.id}>
-            {book?.volumeInfo?.imageLinks?.thumbnail && (
-              <img
-                src={book.volumeInfo.imageLinks.thumbnail}
-                alt={book.volumeInfo.title}
-                style={{ width: "100px" }}
-              />
-            )}
-            <h3>{book?.volumeInfo?.title}</h3>
-            <p>Author: {book?.volumeInfo?.authors?.join(", ")}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div className="all-books">
+        {allBooks.map((oneBook) => {
+          return (
+            <div key={oneBook.id} className="book-card">
+              <article>
+                <Link to={"/books/:bookId"}>
+                  <img src={oneBook.volumeInfo.imageLinks.smallThumbnail} alt={oneBook.volumeInfo.description} />
+                </Link>
+                <h2>{oneBook.volumeInfo.title}</h2>
+                <p>{oneBook.volumeInfo.authors}</p>
+              </article>
+            </div>
+          );
+        })}
+      </div>
   );
 };
 
