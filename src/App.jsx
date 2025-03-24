@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import HomePage from './pages/HomePage'
 import BookDetailsPage from './pages/BookDetailsPage'
 import BooksListPage from './pages/BooksListPage'
 import AddBook from './pages/AddBook'
@@ -8,6 +7,7 @@ import Navbar from './components/Navbar'
 import ErrorPage from './pages/ErrorPage'
 import UpdateBook from './pages/UpdateBook'
 import Footer from './components/Footer'
+import AboutUsPage from './pages/AboutUsPage'
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
         <Route path="/books/:bookId" element={<BookDetailsPage />} />
         <Route path="/new-book" element={<AddBook />} />
         <Route path="/edit-book" element={<UpdateBook />} />
+        <Route path="/about" element={<AboutUsPage />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Footer />
