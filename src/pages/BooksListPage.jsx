@@ -38,14 +38,13 @@ const BooksListPage = () => {
                     "No description available"
                   }
                 />
-              </Link>
-              <h2>{oneBook.volumeInfo?.title || "No Title Available"}</h2>
-              <p>
-                {oneBook.volumeInfo?.authors?.join(", ") || "Unknown Author"}
-              </p>
-            </article>
-          </div>
-        ))}
+                </Link>
+                <h2>{oneBook.volumeInfo?.title || "no title available"}</h2>
+                <p>{oneBook.volumeInfo?.authors || "no authors available"}</p>
+              </article>
+            </div>
+          )
+        )}
       </div>
     </div>
   );

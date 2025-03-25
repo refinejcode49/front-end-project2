@@ -1,27 +1,52 @@
-import React, { useState } from "react";
-import "../App.css";
+import axios from 'axios';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState("");
-  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState("");
   const [description, setDescription] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [addedBy, setAddedBy] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newBook = {
-      title,
-      authors,
-      category,
-      description,
-      imageURL,
-      addedBy,
-    };
-    console.log("New Book:", newBook);
-    
-  };
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleAuthors = (e) => setAuthors(e.target.value);
+  const handleCategories = (e) => setCategories(e.target.value);
+  const handleDescription = (e) => setDescription(e.target.value);
+  const handleImageUrl = (e) => setImageURL(e.target.value);
+  const handleAddedBy = (e) => setAddedBy(e.target.value);
+
+
+  function handleSubmit(event) {
+  event.preventDefault();
+  const newBook = {
+    title: title,
+    authors: authors,
+    categories: categories,
+    description: description,
+    thumbnail: imageURL,
+    addedBy: addedBy,
+  }
+  axios
+  .post("http://localhost:5005/books/", newBook)
+  .then((response) =>{
+    console.log("new book added!", response.data)
+    navigate("/");
+  })
+  .catch((error)=> console.log(error))
+  .finally(() => {
+    setTitle("");
+    setAuthors("");
+    setCategories("");
+    setDescription("");
+    setThumbnail("");
+    setAddedBy("");
+  });
+
+}
+
+  const navigate = useNavigate()
 
   return (
     <div className="add-book-container">
@@ -46,15 +71,10 @@ const AddBook = () => {
           value={authors}
           onChange={(e) => setAuthors(e.target.value)}
         />
-
-        <label htmlFor="category">Category of the book</label>
-        <input
-          type="text"
-          id="category"
-          name="category"
-          placeholder="Category of the book"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+        <label>Categories of the book</label>
+        <input type="text" name="categories" placeholder="Categories of the book"
+        value={categories}
+        onChange={handleCategories}
         />
 
         <label htmlFor="description">Description of the book</label>
