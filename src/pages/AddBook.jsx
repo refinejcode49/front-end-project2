@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../App.css";
 
 const AddBook = () => {
   const [title, setTitle] = useState("");
@@ -8,14 +9,7 @@ const AddBook = () => {
   const [imageURL, setImageURL] = useState("");
   const [addedBy, setAddedBy] = useState("");
 
-  const handleTitle = (e) => setTitle(e.target.value);
-  const handleAuthors = (e) => setAuthors(e.target.value);
-  const handleCategory = (e) => setCategory(e.target.value);
-  const handleDescription = (e) => setDescription(e.target.value);
-  const handleImageUrl = (e) => setImageURL(e.target.value);
-  const handleAddedBy = (e) => setAddedBy(e.target.value);
-
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newBook = {
       title,
@@ -25,60 +19,75 @@ const AddBook = () => {
       imageURL,
       addedBy,
     };
-  }
+    console.log("New Book:", newBook);
+    
+  };
 
   return (
-    <div className="form">
-      <form>
-        <label>Title of the book</label>
+    <div className="add-book-container">
+      <h2>Add New Book</h2>
+      <form className="add-book-form" onSubmit={handleSubmit}>
+        <label htmlFor="title">Title of the book</label>
         <input
           type="text"
+          id="title"
           name="title"
           placeholder="Title of the book"
           value={title}
-          onChange={handleTitle}
+          onChange={(e) => setTitle(e.target.value)}
         />
-        <label>Author(s) of the book</label>
+
+        <label htmlFor="authors">Author(s) of the book</label>
         <input
           type="text"
+          id="authors"
           name="authors"
           placeholder="Author(s) of the book"
           value={authors}
-          onChange={handleAuthors}
+          onChange={(e) => setAuthors(e.target.value)}
         />
-        <label>Category of the book</label>
+
+        <label htmlFor="category">Category of the book</label>
         <input
           type="text"
+          id="category"
           name="category"
           placeholder="Category of the book"
           value={category}
-          onChange={handleCategory}
+          onChange={(e) => setCategory(e.target.value)}
         />
-        <label>Description of the book</label>
-        <input
-          type="text"
+
+        <label htmlFor="description">Description of the book</label>
+        <textarea
+          id="description"
           name="description"
           placeholder="Description of the book"
+          rows="4"
           value={description}
-          onChange={handleDescription}
-        />
-        <label>Image of the book</label>
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
+
+        <label htmlFor="imageURL">Image URL of the book</label>
         <input
           type="text"
+          id="imageURL"
           name="imageURL"
           placeholder="Image URL of the book"
           value={imageURL}
-          onChange={handleImageUrl}
+          onChange={(e) => setImageURL(e.target.value)}
         />
-        <label>Added by</label>
+
+        <label htmlFor="addedBy">Added by</label>
         <input
           type="text"
+          id="addedBy"
           name="addedBy"
           placeholder="Added by"
           value={addedBy}
-          onChange={handleAddedBy}
+          onChange={(e) => setAddedBy(e.target.value)}
         />
-        <button className="form-btn" onClick={handleSubmit}>
+
+        <button type="submit" className="form-btn">
           Add Book
         </button>
       </form>
