@@ -22,15 +22,21 @@ const BookDetailsPage = () => {
       .delete(`http://localhost:5005/books/${bookId}`)
       .then((res) => {
         console.log("book deleted", res.data);
-        alert("Book deleted successfully!");
-        navigate("/");
+        setBook(filteredBook);
+        alert("Book deleted successfully");
+        navigate("/")
+        
       })
-      .catch((err) => console.log(err));
-  }
+      .catch((err)=>{
+        console.log(err);
+        alert("Failed to delete the book. Please try again.")
+      })
+    }
 
-  if (!book) {
-    return <div>Book not found</div>;
-  }
+    if(!book) {
+      return <div>Book not found</div>
+    }
+
 
   return (
     <div className="book-details-container">
