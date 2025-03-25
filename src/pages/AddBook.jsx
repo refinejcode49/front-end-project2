@@ -32,6 +32,7 @@ const AddBook = () => {
   .post("http://localhost:5005/books/", newBook)
   .then((response) =>{
     console.log("new book added!", response.data)
+    alert("Book added successfully!");
     navigate("/");
   })
   .catch((error)=> console.log(error))
