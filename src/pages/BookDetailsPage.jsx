@@ -11,7 +11,6 @@ const BookDetailsPage = () => {
    
     fetch(`http://localhost:5005/books/${bookId}`)
       .then((response) => {
-
         return response.json();
       
       })
@@ -30,12 +29,16 @@ const BookDetailsPage = () => {
     <div>
       <article>
          
-          <h2>{book.volumeInfo.title}</h2>
-          <p>{book.volumeInfo.authors}</p>
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.description} />
-      
-      <Link to="/">
+          <h2 className="title">Title: {book.volumeInfo.title}</h2>
+          <p className="authors">Author: {book.volumeInfo.authors}</p>
+          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.description} className="book-image" />
+          <p className="description">{book.volumeInfo.description}</p>
+         
+      <Link to="/" className="back-btn">
         <button>BACK</button>
+      </Link>
+      <Link className="favorite-btn">
+        <button>Favorite</button>
       </Link>
       </article>
     </div>
