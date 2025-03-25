@@ -58,10 +58,13 @@ const BookDetailsPage = () => {
           <p className="description">{book.volumeInfo?.description}</p>
          
       <Link to="/" className="back-btn">
-        <button>BACK</button>
+        <button>Back</button>
+      </Link>
+      <Link className="edit-btn" to="/edit-book">
+      <button>Edit Book</button>
       </Link>
       <Link className="favorite-btn">
-        <button>Favorite</button>
+        <button>Favorite Book</button>
       </Link>
       <button onClick={()=> {
         handleDelete();
