@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 const BookDetailsPage = () => {
   const [book, setBook] = useState(null);
   const { bookId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(()=> {
    
@@ -41,7 +42,7 @@ const BookDetailsPage = () => {
     if(!book) {
       return <div>Book not found</div>
     }
- 
+
   return (
     <div>
       <article>
