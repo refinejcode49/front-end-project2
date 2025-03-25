@@ -9,6 +9,7 @@ const BooksListPage = () => {
       try {
         const response = await axios.get("http://localhost:5005/books");
         console.log("response: ", response);
+        console.log("DataBase response: ", response.data);
         // in the google json file the data is stored inside items
         setAllBooks(response.data);
       } catch (error) {
@@ -18,7 +19,8 @@ const BooksListPage = () => {
     //to work you have to call getAllbooks() !!!!!!!!!!!
     getAllBooks();
   }, []);
-
+  
+  
 
   return (
       <div className="all-books">
@@ -30,7 +32,10 @@ const BooksListPage = () => {
             <div key={oneBook.id} className="book-card">
               <article>
                 <Link to={`/books/${oneBook.id}`}>
-                  <img src={oneBook.volumeInfo.imageLinks.smallThumbnail} alt={oneBook.volumeInfo.description} />
+                <img
+                    src={oneBook.volumeInfo?.imageLinks?.smallThumbnail || "default-thumbnail.jpg"}
+                    alt={oneBook.volumeInfo?.description || "No description available"}
+                />
                 </Link>
                 <h2>{oneBook.volumeInfo.title}</h2>
                 <p>{oneBook.volumeInfo.authors}</p>
@@ -43,3 +48,4 @@ const BooksListPage = () => {
 };
 
 export default BooksListPage;
+
