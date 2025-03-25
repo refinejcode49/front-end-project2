@@ -37,8 +37,8 @@ const BooksListPage = () => {
                     alt={oneBook.volumeInfo?.description || "No description available"}
                 />
                 </Link>
-                <h2>{oneBook.volumeInfo.title}</h2>
-                <p>{oneBook.volumeInfo.authors}</p>
+                <h2>{oneBook.volumeInfo?.title || "no title available"}</h2>
+                <p>{oneBook.volumeInfo?.authors || "no authors available"}</p>
               </article>
             </div>
           );

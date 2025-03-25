@@ -1,33 +1,52 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState("");
-  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState("");
   const [description, setDescription] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [addedBy, setAddedBy] = useState("");
 
   const handleTitle = (e) => setTitle(e.target.value);
   const handleAuthors = (e) => setAuthors(e.target.value);
-  const handleCategory = (e) => setCategory(e.target.value);
+  const handleCategories = (e) => setCategories(e.target.value);
   const handleDescription = (e) => setDescription(e.target.value);
   const handleImageUrl = (e) => setImageURL(e.target.value);
   const handleAddedBy = (e) => setAddedBy(e.target.value);
 
 
-function handleSubmit(event) {
+  function handleSubmit(event) {
   event.preventDefault();
   const newBook = {
-    title,
-    authors,
-    category,
-    description,
-    imageURL,
-    addedBy,
+    title: title,
+    authors: authors,
+    categories: categories,
+    description: description,
+    thumbnail: imageURL,
+    addedBy: addedBy,
   }
- 
+  axios
+  .post("http://localhost:5005/books/", newBook)
+  .then((response) =>{
+    console.log("new book added!", response.data)
+    navigate("/");
+  })
+  .catch((error)=> console.log(error))
+  .finally(() => {
+    setTitle("");
+    setAuthors("");
+    setCategories("");
+    setDescription("");
+    setThumbnail("");
+    setAddedBy("");
+  });
+
 }
+
+  const navigate = useNavigate()
 
   return (
     <div className="form">
@@ -42,10 +61,10 @@ function handleSubmit(event) {
         value={authors}
         onChange={handleAuthors}
         />
-        <label>Category of the book</label>
-        <input type="text" name="category" placeholder="Category of the book"
-        value={category}
-        onChange={handleCategory}
+        <label>Categories of the book</label>
+        <input type="text" name="categories" placeholder="Categories of the book"
+        value={categories}
+        onChange={handleCategories}
         />
         <label>Description of the book</label>
         <input type="text" name="description" placeholder="Description of the book"
