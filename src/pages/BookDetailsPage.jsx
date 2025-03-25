@@ -1,48 +1,50 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const BookDetailsPage = () => {
-  const [book, setBook] = useState();
+  const [book, setBook] = useState(null);
   const { bookId } = useParams();
-  console.log("bookID is : ", bookId);
 
-  useEffect(()=> {
-   
-    fetch(`http://localhost:5005/books/${bookId}`)
-      .then((response) => {
-        return response.json();
-      
-      })
-      .then((data) => {
-        console.log("here is one book", data);
-        setBook(data);
-      })
-      .catch((error)=> console.log("the error is :", error));
-    }, [bookId])
-    if(!book) {
-      return <div>Book not found</div>
+  useEffect(() => {
+    async function fetchBookDetails() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5005/books/${bookId}`
+        );
+        setBook(response.data);
+      } catch (error) {
+        console.error("Error fetching book details:", error);
+      }
     }
+    fetchBookDetails();
+  }, [bookId]);
 
+  if (!book) {
+    return <div>Book not found</div>;
+  }
 
   return (
-    <div>
-      <article>
-         
-          <h2 className="title">Title: {book.volumeInfo.title}</h2>
-          <p className="authors">Author: {book.volumeInfo.authors}</p>
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.description} className="book-image" />
-          <p className="description">{book.volumeInfo.description}</p>
-         
-      <Link to="/" className="back-btn">
-        <button>BACK</button>
-      </Link>
-      <Link className="favorite-btn">
-        <button>Favorite</button>
-      </Link>
-      </article>
+    <div className="book-details-container">
+      <img
+        src={book.volumeInfo?.imageLinks?.thumbnail || "placeholder.jpg"}
+        alt={book.volumeInfo?.title || "No Title Available"}
+      />
+      <h2>{book.volumeInfo?.title || "No Title Available"}</h2>
+      <p className="authors">
+        Author: {book.volumeInfo?.authors?.join(", ") || "Unknown Author"}
+      </p>
+      <p className="description">
+        {book.volumeInfo?.description || "No description available."}
+      </p>
+      <div className="buttons">
+        <Link to="/">
+          <button className="back-btn">Back</button>
+        </Link>
+        <button className="favorite-btn">Favorite</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default BookDetailsPage;

@@ -1,0 +1,356 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9; /* Light gray background for the entire page */
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.page-container {
+  background-color: #ffffff; /* White background for the content area */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px; /* Center the content and limit the width */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #5a3ec8; /* Purple background */
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  height: 50px; /* Adjust the size of the logo */
+  cursor: pointer;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Add spacing if needed */
+}
+
+.navbar-left div {
+  font-size: 24px; /* Increase the font size for the title */
+  font-weight: bold; /* Make the title bold */
+  color: white; /* Ensure the title color matches the navbar theme */
+  text-transform: uppercase; /* Optional: Make the title uppercase */
+  letter-spacing: 1px; /* Add spacing between letters for a modern look */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Add spacing between the search bar and "About Us" link */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-size: 14px;
+  width: 200px; /* Adjust the width of the search bar */
+}
+
+.search-bar button {
+  background-color: #28a745; /* Green color to match the "Add Book" button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-bar button:hover {
+  background-color: #218838; /* Darker green for hover effect */
+}
+
+.about-link {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.about-link:hover {
+  text-decoration: underline;
+}
+
+/* Add New Book Button */
+.add-btn {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+/* General Styles for the Book List Page */
+.all-books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9fc; /* Slightly lighter background for the book list */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Card Styles */
+.book-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center; /* Center-align the content */
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.book-card img {
+  width: 100%;
+  height: 300px; /* Set a fixed height for uniformity */
+  object-fit: cover; /* Ensure the image scales properly */
+  border-bottom: 1px solid #ddd; /* Add a separator between the image and text */
+}
+
+.book-card article {
+  padding: 15px;
+}
+
+.book-card h2 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.book-card p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.book-card .genre {
+  color: #5a3ec8;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* Edit and Delete Buttons */
+.book-card .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.book-card .actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.book-card .actions .edit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.book-card .actions .edit-btn:hover {
+  background-color: #218838;
+}
+
+.book-card .actions .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.book-card .actions .delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Book Details Page Styles */
+.book-details-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.book-details-container img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-details-container h2 {
+  font-size: 24px;
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.book-details-container .authors {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.book-details-container .description {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.book-details-container .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.book-details-container .buttons .back-btn,
+.book-details-container .buttons .favorite-btn {
+  background-color: #5a3ec8; /* Purple for Back */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 120px; /* Fixed width for both buttons */
+  text-align: center; /* Ensure text is centered */
+}
+
+.book-details-container .buttons .back-btn {
+  background-color: #5a3ec8; /* Purple color */
+}
+
+.book-details-container .buttons .back-btn:hover {
+  background-color: #4a32b4; /* Slightly darker purple for hover effect */
+}
+
+.book-details-container .buttons .favorite-btn {
+  background-color: #28a745; /* Green color */
+}
+
+.book-details-container .buttons .favorite-btn:hover {
+  background-color: #218838; /* Darker green for hover effect */
+}
+
+/* Add Book Form Styles */
+.add-book-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-container h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-book-form label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.add-book-form input,
+.add-book-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form input:focus,
+.add-book-form textarea:focus {
+  outline: none;
+  border-color: #5a3ec8; /* Purple border on focus */
+  box-shadow: 0 0 5px rgba(90, 62, 200, 0.5);
+}
+
+.add-book-form button {
+  background-color: #28a745; /* Green color for the button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-book-form button:hover {
+  background-color: #218838; /* Darker green for hover effect */
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-size: 14px;
+}
