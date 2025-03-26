@@ -12,7 +12,7 @@ const BookListPage = () => {
     setError(null);
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`
+        `http://localhost:5005/books?q=${searchQuery}`
       );
       setBooks(response.data?.items || []);
     } catch (err) {
