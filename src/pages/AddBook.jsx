@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
-const AddBook = () => {
+const AddBook = ({ addBookToBookList, closeForm }) => {
+  // pass props to the addBookToBookList function and closeForm() 
   const [title, setTitle] = useState("");
   const [authors, setAuthors] = useState("");
   const [categories, setCategories] = useState("");
@@ -14,11 +15,15 @@ const AddBook = () => {
   function handleSubmit(event) {
   event.preventDefault();
   const newBook = {
-    title: title,
-    authors: authors,
-    categories: categories,
-    description: description,
-    thumbnail: imageURL,
+    volumeInfo: {
+      title: title,
+      authors: authors.split(",").map((author) => author.trim()),
+      categories: categories,
+      description: description,
+      imageLinks: {
+        smallThumbnail: imageURL,
+      },
+    },
     addedBy: addedBy,
   }
   axios
@@ -26,7 +31,8 @@ const AddBook = () => {
   .then((response) =>{
     console.log("new book added!", response.data)
     alert("Book added successfully!");
-    navigate("/");
+    addBookToBookList(response.data); // add new Book to the bookList
+    closeForm(); // close the form after submitting
   })
   .catch((error)=> console.log(error))
   .finally(() => {

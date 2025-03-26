@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bookImagePlaceholder from "../assets/book-image-placeholder.png"
+import AddBook from "./AddBook";
 
 const BooksListPage = () => {
   const [allBooks, setAllBooks] = useState([]);
+  const [showAddBookForm, setShowAddBookForm] = useState(false);
 
   useEffect(() => {
     async function getAllBooks() {
@@ -19,11 +21,33 @@ const BooksListPage = () => {
     getAllBooks();
   }, []);
 
+  function addBookToBookList(newBook) {
+    setAllBooks((prevBooks) => [newBook, ...prevBooks])
+  }
+
   return (
     <div className="page-container">
-      <Link to="/new-book">
+      {/* Toggle the AddBook form */}
+      <button
+        className="add-btn"
+        onClick={() => setShowAddBookForm(true)} // Show the form when clicked
+      >
+        ADD BOOK
+      </button>
+
+      {/* Render the AddBook form */}
+      {showAddBookForm && (
+        <div className="add-book-modal">
+          <AddBook
+            addBookToBookList={addBookToBookList}
+            closeForm={() => setShowAddBookForm(false)} // Pass a function to close the form
+          />
+        </div>
+      )}
+
+      {/* Past addBook Button <Link to="/new-book">
         <button className="add-btn">ADD BOOK</button>
-      </Link>
+      </Link>*/}
       <div className="all-books">
         {allBooks.map((oneBook) => (
           <div key={oneBook.id} className="book-card">
