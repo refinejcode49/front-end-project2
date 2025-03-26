@@ -10,7 +10,7 @@ const BooksListPage = () => {
       try {
         const response = await axios.get("http://localhost:5005/books");
         console.log("response: ", response);
-        setAllBooks(response.data || []); // Ensure `items` exists
+        setAllBooks(response.data); 
       } catch (error) {
         console.log(error);
       }
