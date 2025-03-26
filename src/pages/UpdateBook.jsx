@@ -13,15 +13,18 @@ const UpdateBook = () => {
     const { bookId } = useParams();
 
     const nav = useNavigate();
-
+   // to get the data of the book from the database
     useEffect(()=> {
-      fetch(`http://localhost:5005/books/${bookId}`)
+      axios
+      .get(`http://localhost:5005/books/${bookId}`)
       .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log("here is one book", data);
-        setBook(data);
+        const book = response.data
+        console.log("Get book data: ", book)
+
+        setTitle(book.title);
+        setAuthors(book.authors);
+        setCategories(book.categories);
+        setDescription(book.description);
       })
       .catch((error)=> console.log("the error is :", error));
     }, [bookId]);

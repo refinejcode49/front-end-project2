@@ -60,7 +60,7 @@ const BookDetailsPage = () => {
       <Link to="/" className="back-btn">
         <button>Back</button>
       </Link>
-      <Link className="edit-btn" to="/edit-book">
+      <Link className="edit-btn" to={`/books/edit-book/${bookId}`}>
       <button>Edit Book</button>
       </Link>
       <Link className="favorite-btn">
