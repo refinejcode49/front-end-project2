@@ -554,3 +554,18 @@ a:hover {
 .delete-btn:hover {
   background-color: #8e44ad; /* Darker purple on hover */
 }
+
+.not-found-container {
+  background-color: #ffffff; /* White background for the content area */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 1200px; /* Center the content and limit the width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
