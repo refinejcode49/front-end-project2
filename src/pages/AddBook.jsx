@@ -10,13 +10,6 @@ const AddBook = () => {
   const [imageURL, setImageURL] = useState("");
   const [addedBy, setAddedBy] = useState("");
 
-  const handleTitle = (e) => setTitle(e.target.value);
-  const handleAuthors = (e) => setAuthors(e.target.value);
-  const handleCategories = (e) => setCategories(e.target.value);
-  const handleDescription = (e) => setDescription(e.target.value);
-  const handleImageUrl = (e) => setImageURL(e.target.value);
-  const handleAddedBy = (e) => setAddedBy(e.target.value);
-
 
   function handleSubmit(event) {
   event.preventDefault();
