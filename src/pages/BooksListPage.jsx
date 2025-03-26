@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import bookImagePlaceholder from "../assets/book-image-placeholder.png"
 
 const BooksListPage = () => {
   const [allBooks, setAllBooks] = useState([]);
@@ -31,7 +32,7 @@ const BooksListPage = () => {
                 <img
                   src={
                     oneBook.volumeInfo?.imageLinks?.smallThumbnail ||
-                    "placeholder.jpg"
+                    bookImagePlaceholder
                   }
                   alt={
                     oneBook.volumeInfo?.description ||

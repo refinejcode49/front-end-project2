@@ -256,36 +256,44 @@ a:hover {
   transition: background-color 0.3s ease;
 }
 
+/* Back Button */
 .back-btn button {
   background-color: #28a745; /* Green color for the back button */
   color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .back-btn button:hover {
   background-color: #218838; /* Darker green on hover */
 }
 
+/* Favorite Button */
 .favorite-btn button {
-  background-color: #28a745; /* Green for the favorite button */
+  background-color: #ffc107; /* Yellow for the favorite button */
   color: white;
 }
 
 .favorite-btn button:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #e0a800; /* Darker yellow on hover */
 }
 
+/* Delete Button */
 .delete-btn {
-  background-color: #dc3545; /* Red for the delete button */
+  background-color: #a569bd; /* Lighter purple for the delete button */
   color: white;
 }
 
 .delete-btn:hover {
-  background-color: #c82333; /* Darker red on hover */
+  background-color: #8e44ad; /* Darker purple on hover */
+}
+
+/* Edit Button */
+.edit-btn button {
+  background-color: #007bff; /* Blue for the edit button */
+  color: white;
+}
+
+.edit-btn button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Add Book Form Styles */
@@ -347,6 +355,56 @@ a:hover {
 
 .add-book-form button:hover {
   background-color: #218838; /* Darker green for hover effect */
+}
+
+/* Update Book Form Styles */
+.update-book-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.update-book-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.update-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.update-book-form label {
+  font-size: 16px;
+  color: #555;
+}
+
+.update-book-form input,
+.update-book-form textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.update-book-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #5a3ec8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-book-form button:hover {
+  background-color: #4a32a3;
 }
 
 /* Footer Styles */

@@ -10,13 +10,6 @@ const AddBook = () => {
   const [imageURL, setImageURL] = useState("");
   const [addedBy, setAddedBy] = useState("");
 
-  const handleTitle = (e) => setTitle(e.target.value);
-  const handleAuthors = (e) => setAuthors(e.target.value);
-  const handleCategories = (e) => setCategories(e.target.value);
-  const handleDescription = (e) => setDescription(e.target.value);
-  const handleImageUrl = (e) => setImageURL(e.target.value);
-  const handleAddedBy = (e) => setAddedBy(e.target.value);
-
 
   function handleSubmit(event) {
   event.preventDefault();
@@ -32,6 +25,7 @@ const AddBook = () => {
   .post("http://localhost:5005/books/", newBook)
   .then((response) =>{
     console.log("new book added!", response.data)
+    alert("Book added successfully!");
     navigate("/");
   })
   .catch((error)=> console.log(error))
@@ -40,7 +34,7 @@ const AddBook = () => {
     setAuthors("");
     setCategories("");
     setDescription("");
-    setThumbnail("");
+    setImageURL("");
     setAddedBy("");
   });
 
@@ -74,7 +68,7 @@ const AddBook = () => {
         <label>Categories of the book</label>
         <input type="text" name="categories" placeholder="Categories of the book"
         value={categories}
-        onChange={handleCategories}
+        onChange={(e) => setCategories(e.target.value)}
         />
 
         <label htmlFor="description">Description of the book</label>

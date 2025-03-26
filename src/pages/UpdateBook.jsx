@@ -1,124 +1,112 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UpdateBook = () => {
-    const [title, setTitle] = useState("");
-    const [authors, setAuthors] = useState("");
-    const [categories, setCategories] = useState("");
-    const [description, setDescription] = useState("");
-    const [imageURL, setImageURL] = useState("");
-    const [addedBy, setAddedBy] = useState("");
+  const { bookId } = useParams(); // Get the bookId from the URL
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
-    const { bookId } = useParams();
+  const [book, setBook] = useState(null); // State to store the book details
+  const [title, setTitle] = useState("");
+  const [authors, setAuthors] = useState("");
+  const [description, setDescription] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
 
-    const nav = useNavigate();
-   // to get the data of the book from the database
-    useEffect(()=> {
-      axios
+  // Fetch the book details when the component mounts
+  useEffect(() => {
+    axios
       .get(`http://localhost:5005/books/${bookId}`)
       .then((response) => {
-        const book = response.data
-        console.log("Get book data: ", book)
-
-        setTitle(book.title);
-        setAuthors(book.authors);
-        setCategories(book.categories);
-        setDescription(book.description);
+        const bookData = response.data;
+        setBook(bookData);
+        setTitle(bookData.volumeInfo?.title || "");
+        setAuthors(bookData.volumeInfo?.authors?.join(", ") || "");
+        setDescription(bookData.volumeInfo?.description || "");
+        setThumbnail(bookData.volumeInfo?.imageLinks?.thumbnail || "");
       })
-      .catch((error)=> console.log("the error is :", error));
-    }, [bookId]);
+      .catch((error) => {
+        console.error("Error fetching book details:", error);
+        alert("Failed to fetch book details. Please try again.");
+      });
+  }, [bookId]);
 
-    async function handleUpdateBook(event) {
-      // to prevent the form  from refreshing the page
-      event.preventDefault();
-      // add the properties to update
-      const updateBook = {
+  // Handle form submission to update the book
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const updatedBook = {
+      ...book,
+      volumeInfo: {
+        ...book.volumeInfo,
         title: title,
-        authors: authors,
-        categories: categories,
+        authors: authors.split(",").map((author) => author.trim()),
         description: description,
-        thumbnail: imageURL,
-        addedBy: addedBy,
-      };
-      // to update the database
-      axios
-      .put(`http://localhost:5005/books/${bookId}`)
-      .then((response)=>{
-        console.log("successfully updated", response.data);
-        nav("/");
+        imageLinks: {
+          ...book.volumeInfo?.imageLinks,
+          thumbnail: thumbnail,
+        },
+      },
+    };
+
+    axios
+      .put(`http://localhost:5005/books/${bookId}`, updatedBook)
+      .then((response) => {
+        console.log("Book updated successfully:", response.data);
+        alert("Book updated successfully!");
+        navigate(`/books/${bookId}`); // Redirect to the book details page
       })
-      .catch((error)=>console.log(error));
-    }
+      .catch((error) => {
+        console.error("Error updating book:", error);
+        alert("Failed to update the book. Please try again.");
+      });
+  };
+
+  if (!book) {
+    return <div>Loading book details...</div>;
+  }
 
   return (
-    <div>
-        <h2>Update the Book</h2>
-          <form className="edit-book-form" onSubmit={handleUpdateBook}>
-             <label htmlFor="title">Title of the book</label>
-                 <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="Title of the book"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
+    <div className="update-book-container">
+      <h2>Update Book</h2>
+      <form className="update-book-form" onSubmit={handleSubmit}>
+        <label htmlFor="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-             <label htmlFor="authors">Author(s) of the book</label>
-                <input
-                    type="text"
-                    id="authors"
-                    name="authors"
-                    placeholder="Author(s) of the book"
-                    value={authors}
-                    onChange={(e) => setAuthors(e.target.value)}
-                  />
-            <label>Categories of the book</label>
-                <input 
-                    type="text" 
-                    name="categories" 
-                    placeholder="Categories of the book"
-                    value={categories}
-                    onChange={(e) => setCategories(e.target.value)}
-                />
+        <label htmlFor="authors">Authors (comma-separated)</label>
+        <input
+          type="text"
+          id="authors"
+          value={authors}
+          onChange={(e) => setAuthors(e.target.value)}
+        />
 
-            <label htmlFor="description">Description of the book</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    placeholder="Description of the book"
-                    rows="4"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          rows="4"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
 
-            <label htmlFor="imageURL">Image URL of the book</label>
-                <input
-                    type="text"
-                    id="imageURL"
-                    name="imageURL"
-                    placeholder="Image URL of the book"
-                    value={imageURL}
-                    onChange={(e) => setImageURL(e.target.value)}
-                />
+        <label htmlFor="thumbnail">Thumbnail URL</label>
+        <input
+          type="text"
+          id="thumbnail"
+          value={thumbnail}
+          onChange={(e) => setThumbnail(e.target.value)}
+        />
 
-            <label htmlFor="addedBy">Added by</label>
-                <input
-                    type="text"
-                    id="addedBy"
-                    name="addedBy"
-                    placeholder="Added by"
-                    value={addedBy}
-                    onChange={(e) => setAddedBy(e.target.value)}
-                />
-
-            <button type="submit" className="edit-btn">
-          Edit Book
+        <button type="submit" className="form-btn">
+          Update Book
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default UpdateBook
+export default UpdateBook;
