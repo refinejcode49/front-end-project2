@@ -14,7 +14,7 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
         </Link>
         {/*button to toggle dark mode*/}
         <button onClick={toggleDarkMode} className="dark-mode-toggle">
-        {isDarkMode ? "Light Mode" : "Dark Mode"}
+        {isDarkMode ? " ☀️ Light Mode" : " 🌙 Dark Mode"}
       </button>
       </div>
 

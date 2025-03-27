@@ -27,7 +27,7 @@ const BooksListPage = () => {
   }
 
   console.log("All Books:", allBooks);
-  
+
   return (
     <div className="page-container">
       {/* Toggle the AddBook form */}
@@ -63,7 +63,7 @@ const BooksListPage = () => {
                     bookImagePlaceholder
                   }
                   alt={
-                    oneBook.volumeInfo?.description ||
+                    oneBook.volumeInfo?.title ||
                     "No description available"
                   }
                 />
