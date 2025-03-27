@@ -194,6 +194,44 @@ a:hover {
   margin-top: 5px;
 }
 
+/* style to the hover frame */
+.hover-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border: none;
+  border-radius: 35px;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+
+/* style to the title authors, date and categories inside the frame */
+.hover-frame .book-title,
+.hover-frame .book-authors,
+.hover-frame .book-publishedDate,
+.hover-frame .book-categories {
+  color: white;
+  text-align: center;
+  margin: 5px 5px;
+  font-size: 18px;
+}
+
+.book-card:hover .hover-frame {
+  opacity: 1; 
+}
+
+.book-card:hover img {
+  transform: scale(1.1); 
+}
+
+
 /* Edit and Delete Buttons */
 .book-card .actions {
   display: flex;
