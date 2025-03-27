@@ -9,7 +9,6 @@
     "wdth" 100;
 }
 
-
 .cinzel-font {
   font-family: "Cinzel", serif;
   font-optical-sizing: auto;
@@ -19,7 +18,6 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
   background-color: #f4f4f9; /* Light gray background for the entire page */
   color: #333;
 }
@@ -177,7 +175,7 @@ a:hover {
 }
 
 .book-card h2 {
-  font-size: 18px;
+  font-size: 24px;
   margin: 10px 0 5px;
   color: #333;
 }
@@ -231,7 +229,6 @@ a:hover {
   transform: scale(1.1); 
 }
 
-
 /* Edit and Delete Buttons */
 .book-card .actions {
   display: flex;
@@ -284,13 +281,13 @@ a:hover {
 }
 
 .book-details-container h2 {
-  font-size: 24px;
+  font-size: 44px;
   color: #333;
   margin-bottom: 10px;
 }
 
 .book-details-container p {
-  font-size: 16px;
+  font-size: 22px;
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -465,9 +462,9 @@ a:hover {
 
 /* Footer Styles */
 .footer {
-  position: fixed; /* Fix the footer at the bottom of the page */
-  bottom: 0;
-  left: 0;
+  /*position: fixed; /* Fix the footer at the bottom of the page */ /*Disabled because this position block the view of new books added*/
+  /*bottom: 0;
+  left: 0;*/
   width: 100%; /* Make the footer span the full width of the page */
   background-color: #5a3ec8; /* Match the navbar's purple color */
   color: white;
@@ -610,7 +607,6 @@ a:hover {
 .delete-btn:hover {
   background-color: #8e44ad; /* Darker purple on hover */
 }
-
 .not-found-container {
   background-color: #ffffff; /* White background for the content area */
   padding: 20px;
@@ -624,4 +620,95 @@ a:hover {
   align-items: center;
 }
 
+.span-style {
+font-weight: 700;
+}
+
+
+
+/* Dark mode styles */
+.App.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.navbar.dark-mode {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 15px;
+}
+
+.navbar .dark-mode-toggle {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #000;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.App.dark-mode .navbar{
+  background-color: #1e1e1e;
+}
+
+.App.dark-mode .footer{
+  background-color: #1e1e1e;
+}
+
+.App.dark-mode .page-container {
+  background-color: #1e1e1e; 
+}
+
+.App.dark-mode .all-books {
+  background-color: #3a3a3a; /*Light dark color for the books container*/
+}
+
+.App.dark-mode .book-card {
+  background-color: #3a3a3a;
+  border: 1px solid #3a3a3a;
+}
+
+.App.dark-mode .book-details-container {
+  background-color:#3a3a3a;
+  color: #ffffff;
+}
+
+.App.dark-mode .book-details-container h2 {
+  color: #ffffff;
+}
+
+.App.dark-mode .book-details-container p {
+  color: #ffffff;
+}
+
+.App.dark-mode .back-btn button {
+  background-color: #4caf50; 
+
+}
+
+App.dark-mode .back-btn button:hover {
+  background-color: #388e3c;
+}
+ 
+.App.dark-mode .delete-btn {
+  background-color: #b983d6; 
+}
+
+.App.dark-mode .delete-btn:hover {
+  background-color: #9b59b6;
+}
+
+.App.dark-mode .navbar .dark-mode-toggle {
+  border-color: #fff;
+  color: #1e1e1e;
+  background-color: #fff;
+}
 

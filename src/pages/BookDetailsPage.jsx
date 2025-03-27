@@ -45,7 +45,7 @@ const BookDetailsPage = () => {
       />
       <h2>{book.volumeInfo?.title || "No Title Available"}</h2>
       <p className="authors">
-        <span className="span-style">Authors</span> : 
+        <span className="span-style">Authors : </span>
         {/*check to see if book.volumeInfo?.authors is an array*/}
             {Array.isArray(book.volumeInfo?.authors)
           //if it is, display the authors separeted by a comma
@@ -54,12 +54,12 @@ const BookDetailsPage = () => {
             : book.volumeInfo?.authors || "Unknown Author"}
       </p>
       <p className="book-publishedDate">
-        <span>Published date</span> : 
+        <span className="span-style">Published date : </span>
         {book.volumeInfo?.publishedDate || "no published date available"}
         </p>
 
       <p className="description">
-        <span className="span-style">Description</span> :  
+        <span className="span-style">Description : </span>
         {book.volumeInfo?.description || "No description available."}
       </p>
       
