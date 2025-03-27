@@ -23,9 +23,11 @@ const BooksListPage = () => {
   }, []);
 
   function addBookToBookList(newBook) {
-    setAllBooks((prevBooks) => [newBook, ...prevBooks])
+    setAllBooks((prevBooks) => [...prevBooks, newBook])
   }
 
+  console.log("All Books:", allBooks);
+  
   return (
     <div className="page-container">
       {/* Toggle the AddBook form */}
@@ -56,7 +58,6 @@ const BooksListPage = () => {
               <div className="book-content">
               <Link to={`/books/${oneBook.id}`}>
                 <img
-                  className="frame-hover"
                   src={
                     oneBook.volumeInfo?.imageLinks?.smallThumbnail ||
                     bookImagePlaceholder

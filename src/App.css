@@ -149,10 +149,11 @@ a:hover {
 
 /* Book Card Styles */
 .book-card {
+  position: relative;
+  overflow: hidden;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center; /* Center-align the content */
@@ -204,6 +205,11 @@ a:hover {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5); 
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: 35px;
   opacity: 0; 
