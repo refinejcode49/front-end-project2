@@ -53,8 +53,10 @@ const BooksListPage = () => {
         {allBooks.map((oneBook) => (
           <div key={oneBook.id} className="book-card">
             <article>
+              <div className="book-content">
               <Link to={`/books/${oneBook.id}`}>
                 <img
+                  className="frame-hover"
                   src={
                     oneBook.volumeInfo?.imageLinks?.smallThumbnail ||
                     bookImagePlaceholder
@@ -64,9 +66,15 @@ const BooksListPage = () => {
                     "No description available"
                   }
                 />
-                </Link>
-                <h2>{oneBook.volumeInfo?.title || "no title available"}</h2>
-                <p>{oneBook.volumeInfo?.authors || "no authors available"}</p>
+                <div className="hover-frame">
+                <h2 className="book-title">Title: {oneBook.volumeInfo?.title || "no title available"}</h2>
+                <p className="book-authors">Authors: {oneBook.volumeInfo?.authors || "no authors available"}</p>
+                <p className="book-publishedDate">Published date : {oneBook.volumeInfo?.publishedDate || "no published date available"}</p>
+                <p className="book-categories">Book Category : {oneBook.volumeInfo?.categories || "no categories available"}</p>
+                </div>
+                
+              </Link>
+              </div>
               </article>
             </div>
           )
@@ -77,4 +85,3 @@ const BooksListPage = () => {
 };
 
 export default BooksListPage;
-
