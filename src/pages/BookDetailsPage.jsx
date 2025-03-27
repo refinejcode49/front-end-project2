@@ -45,16 +45,24 @@ const BookDetailsPage = () => {
       />
       <h2>{book.volumeInfo?.title || "No Title Available"}</h2>
       <p className="authors">
+        <span className="span-style">Authors</span> : 
         {/*check to see if book.volumeInfo?.authors is an array*/}
-          Author: {Array.isArray(book.volumeInfo?.authors)
+            {Array.isArray(book.volumeInfo?.authors)
           //if it is, display the authors separeted by a comma
             ? book.volumeInfo.authors.join(", ")
             // if not array, display unknow author or as is
             : book.volumeInfo?.authors || "Unknown Author"}
       </p>
+      <p className="book-publishedDate">
+        <span>Published date</span> : 
+        {book.volumeInfo?.publishedDate || "no published date available"}
+        </p>
+
       <p className="description">
+        <span className="span-style">Description</span> :  
         {book.volumeInfo?.description || "No description available."}
       </p>
+      
       <div className="buttons">
         <Link to="/" className="back-btn">
           <button>Back</button>
@@ -62,7 +70,6 @@ const BookDetailsPage = () => {
         <Link to={`/edit-book/${bookId}`} className="edit-btn">
           <button>Edit Book</button>
         </Link>
-        <button className="favorite-btn">Favorite Book</button>
         <button className="delete-btn" onClick={handleDelete}>
           Delete Book
         </button>
@@ -70,5 +77,3 @@ const BookDetailsPage = () => {
     </div>
   );
 };
-
-export default BookDetailsPage;
