@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config/apiConfig";
 
 const BookListPage = () => {
   const [books, setBooks] = useState([]);
@@ -12,7 +13,7 @@ const BookListPage = () => {
     setError(null);
     try {
       const response = await axios.get(
-        `http://localhost:5005/books?q=${searchQuery}`
+        `${API_URL}/books?q=${searchQuery}`
       );
       setBooks(response.data?.items || []);
     } catch (err) {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import bookImagePlaceholder from "../assets/book-image-placeholder.png"
 import AddBook from "./AddBook";
+import { API_URL } from "../config/apiConfig";
 
 const BooksListPage = () => {
   const [allBooks, setAllBooks] = useState([]);
@@ -11,7 +12,7 @@ const BooksListPage = () => {
   useEffect(() => {
     async function getAllBooks() {
       try {
-        const response = await axios.get("http://localhost:5005/books");
+        const response = await axios.get(`${API_URL}/books`);
         console.log("response: ", response);
         setAllBooks(response.data); 
       } catch (error) {

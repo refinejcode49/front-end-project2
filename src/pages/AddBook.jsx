@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config/apiConfig';
 
 const AddBook = ({ addBookToBookList, closeForm }) => {
   // pass props to the addBookToBookList function and closeForm() 
@@ -27,7 +28,7 @@ const AddBook = ({ addBookToBookList, closeForm }) => {
     addedBy: addedBy,
   }
   axios
-  .post("http://localhost:5005/books/", newBook)
+  .post(`${API_URL}/books/`, newBook)
   .then((response) =>{
     console.log("new book added!", response.data)
     alert("Book added successfully!");

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import bookImagePlaceholder from "../assets/book-image-placeholder.png"
+import { API_URL } from "../config/apiConfig";
 
 const BookDetailsPage = () => {
   const [book, setBook] = useState(null);
@@ -9,7 +10,7 @@ const BookDetailsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5005/books/${bookId}`)
+    fetch(`${API_URL}/books/${bookId}`)
       .then((response) => response.json())
       .then((data) => {
         console.log("here is one book", data);
@@ -20,7 +21,7 @@ const BookDetailsPage = () => {
 
   function handleDelete() {
     axios
-      .delete(`http://localhost:5005/books/${bookId}`)
+      .delete(`${API_URL}/books/${bookId}`)
       .then((res) => {
         console.log("book deleted", res.data);
         alert("Book deleted successfully");
