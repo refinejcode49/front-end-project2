@@ -19,10 +19,10 @@ const Navbar = ({ toggleDarkMode, isDarkMode }) => {
       </div>
 
       <div className="navbar-right">
-        <div className="search-bar">
+       {/* <div className="search-bar">
           <input type="text" placeholder="Search books..." />
           <button>Search</button>
-        </div>
+        </div>*/}
         <Link to="/about" className="about-link">
           About Us
         </Link>

@@ -4,8 +4,6 @@ This is one of our projects in the [Ironhack](https://www.ironhack.com/fr-en/web
 
 ## [See the App!](https://ironpages-app.netlify.app/)
 
-![App Logo](your-image-logo-path-or-name)
-
 ## Table of contents
 
 - [Overview](#overview)

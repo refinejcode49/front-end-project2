@@ -8,6 +8,7 @@ import { API_URL } from "../config/apiConfig";
 const BooksListPage = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [showAddBookForm, setShowAddBookForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function getAllBooks() {
@@ -30,13 +31,17 @@ const BooksListPage = () => {
 
   return (
     <div className="page-container">
-      {/* Toggle the AddBook form */}
-      <button
-        className="add-btn"
-        onClick={() => setShowAddBookForm(true)} // Show the form when clicked
-      >
-        ADD BOOK
-      </button>
+      <div className="top-page-btn-center">
+        <div className="top-page-container">
+          {/* Toggle the AddBook form */}
+            {!showAddBookForm && ( // Only show the button when the form is not displayed
+               <button
+                className="add-btn"
+                onClick={() => setShowAddBookForm(true)} // Show the form when clicked
+               >
+          ADD BOOK
+        </button>
+      )}
 
       {/* Render the AddBook form */}
       {showAddBookForm && (
@@ -47,12 +52,29 @@ const BooksListPage = () => {
           />
         </div>
       )}
+     </div>
 
+      {/* Conditionally render the search bar */}
+      {!showAddBookForm && (
+      <div className="top-page-container-right">
+        <div className="search-bar">
+          <input type="text" onChange={(event)=>{setSearchTerm(event.target.value)}} placeholder="Search books..." />
+          <button>Search</button>
+        </div>
+      </div>
+      )}
+      
       {/* Past addBook Button <Link to="/new-book">
         <button className="add-btn">ADD BOOK</button>
       </Link>*/}
+      </div>
       <div className="all-books">
-        {allBooks.map((oneBook) => (
+        {allBooks.filter((livre)=> {
+          if (livre.volumeInfo.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return true;
+          }
+        })
+        .map((oneBook) => (
           <div key={oneBook.id} className="book-card">
             <article>
               <div className="book-content">

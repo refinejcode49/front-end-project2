@@ -107,6 +107,28 @@ a:hover {
   background-color: #218838; /* Darker green for hover effect */
 }
 
+.top-page-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.top-page-container .add-btn {
+  width: 30%; 
+}
+.top-page-container-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+}
+
+.top-page-btn-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px; 
+}
 .about-link {
   color: white;
   font-size: 16px;
@@ -359,7 +381,7 @@ a:hover {
 .add-book-container {
   max-width: 600px; /* Limit the width of the form */
   margin: 40px auto; /* Center the form on the page */
-  padding: 20px;
+  padding: 40px;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -471,11 +493,12 @@ a:hover {
   /*position: fixed; /* Fix the footer at the bottom of the page */ /*Disabled because this position block the view of new books added*/
   /*bottom: 0;
   left: 0;*/
+  margin: 80px;
   width: 100%; /* Make the footer span the full width of the page */
   background-color: #5a3ec8; /* Match the navbar's purple color */
   color: white;
   text-align: center; /* Center the text horizontally */
-  padding: 10px 0; /* Add some vertical padding */
+  padding: 40px 0; /* Add some vertical padding */
   font-size: 14px;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow above the footer */
 }
