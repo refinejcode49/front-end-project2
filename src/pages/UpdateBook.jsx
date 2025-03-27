@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../config/apiConfig";
 
 const UpdateBook = () => {
   const { bookId } = useParams(); // Get the bookId from the URL
@@ -16,7 +15,7 @@ const UpdateBook = () => {
   // Fetch the book details when the component mounts
   useEffect(() => {
     axios
-      .get(`${API_URL}/books/${bookId}`)
+      .get(`http://localhost:5005/books/${bookId}`)
       .then((response) => {
         const bookData = response.data;
         setBook(bookData);
@@ -50,7 +49,7 @@ const UpdateBook = () => {
     };
 
     axios
-      .put(`${API_URL}/books/${bookId}`, updatedBook)
+      .put(`http://localhost:5005/books/${bookId}`, updatedBook)
       .then((response) => {
         console.log("Book updated successfully:", response.data);
         alert("Book updated successfully!");

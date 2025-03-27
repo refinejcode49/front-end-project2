@@ -1,17 +1,23 @@
 import React from "react";
-import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
-import AboutUsPage from "../pages/AboutUsPage";
 
 
-const Navbar = () => {
+
+const Navbar = ({ toggleDarkMode, isDarkMode }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/">
-          <div> IronPages App  </div>
+          <div> 
+            <p className="title">IronPages App</p>  
+          </div>
         </Link>
+        {/*button to toggle dark mode*/}
+        <button onClick={toggleDarkMode} className="dark-mode-toggle">
+        {isDarkMode ? "Light Mode" : "Dark Mode"}
+      </button>
       </div>
+
       <div className="navbar-right">
         <div className="search-bar">
           <input type="text" placeholder="Search books..." />

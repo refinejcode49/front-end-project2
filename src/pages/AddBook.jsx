@@ -47,8 +47,6 @@ const AddBook = ({ addBookToBookList, closeForm }) => {
 
 }
 
-  const navigate = useNavigate()
-
   return (
     <div className="add-book-container">
       <h2>Add New Book</h2>
