@@ -77,3 +77,5 @@ const BookDetailsPage = () => {
     </div>
   );
 };
+
+export default BookDetailsPage;
