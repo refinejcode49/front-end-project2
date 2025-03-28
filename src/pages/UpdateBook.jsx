@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { API_URL } from '../config/apiConfig';
 import axios from "axios";
 
 const UpdateBook = () => {
@@ -15,7 +16,7 @@ const UpdateBook = () => {
   // Fetch the book details when the component mounts
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/books/${bookId}`)
+      .get(`${API_URL}/books/${bookId}`)
       .then((response) => {
         const bookData = response.data;
         setBook(bookData);
@@ -33,23 +34,29 @@ const UpdateBook = () => {
   // Handle form submission to update the book
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("form submitted !")
 
     const updatedBook = {
       ...book,
       volumeInfo: {
         ...book.volumeInfo,
-        title: title,
-        authors: authors.split(",").map((author) => author.trim()),
-        description: description,
+        title: title || book.volumeInfo?.title, 
+        authors: authors
+        ? authors.split(",").map((author) => author.trim())
+        : book.volumeInfo?.authors,
+        description: description || book.volumeInfo?.description,
         imageLinks: {
           ...book.volumeInfo?.imageLinks,
-          thumbnail: thumbnail,
+          thumbnail: thumbnail || book.volumeInfo?.imageLinks?.thumbnail
         },
       },
     };
 
+
+  console.log("Updated Book Data:", updatedBook);
+
     axios
-      .put(`${API_URL}/books`, updatedBook)
+      .put(`${API_URL}/books/${bookId}`, updatedBook)
       .then((response) => {
         console.log("Book updated successfully:", response.data);
         alert("Book updated successfully!");
@@ -101,7 +108,7 @@ const UpdateBook = () => {
           onChange={(e) => setThumbnail(e.target.value)}
         />
 
-        <button type="submit" className="form-btn">
+        <button type="submit" className="form-btn" onSubmit={handleSubmit}>
           Update Book
         </button>
       </form>
