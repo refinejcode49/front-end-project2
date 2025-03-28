@@ -49,7 +49,7 @@ const UpdateBook = () => {
     };
 
     axios
-      .put(`http://localhost:5005/books/${bookId}`, updatedBook)
+      .put(`${API_URL}/books`, updatedBook)
       .then((response) => {
         console.log("Book updated successfully:", response.data);
         alert("Book updated successfully!");
